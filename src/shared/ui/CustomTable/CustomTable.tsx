@@ -13,6 +13,7 @@ import {useAppdispatch, useAppSelector} from "../../hooks/useRedux/redux";
 import {tableAppSlice} from "../../../providers/slice/TableSlice";
 import cls from "./CustomTable.module.scss"
 import up from "../../assets/icons/vector_close.svg"
+import {VALUE_SELECT} from "../../../entities/Roles";
 
 
 const CustomTable = memo(() => {
@@ -26,6 +27,8 @@ const CustomTable = memo(() => {
     const {tableData} = useAppSelector(state => state.tableAppSlice)
     const [sortName, setSortName] = useState<boolean>(true)
     const [sortBirthday, setSortBirthday] = useState<boolean>(true)
+    const {filterRole} = useAppSelector(state => state.filterRoleAppSlice)
+
 
     const dispatch = useAppdispatch()
 
@@ -85,7 +88,7 @@ const CustomTable = memo(() => {
                                     <img src={up}
                                          className={sortName ? `${cls.selectName} ${cls.openSelect}` : `${cls.selectName} ${cls.closeSelect}`}/>
                                 </TableCell>
-                                <TableCell>Роль</TableCell>
+                                <TableCell>Должность</TableCell>
                                 <TableCell>Телефон</TableCell>
                                 <TableCell className={cls.birthday} onClick={handleSortBirthday}>
                                     Дата рождения
@@ -93,20 +96,18 @@ const CustomTable = memo(() => {
                                          className={sortBirthday ? `${cls.selectBirth} ${cls.openSelect}` : `${cls.selectBirth} ${cls.closeSelect}`}/>
 
                                 </TableCell>
-                                <TableCell>Статус</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tableData && tableData.map((row: EmploeesType) => (
+                            {tableData && tableData.filter((item: EmploeesType) => filterRole === "all" || item.role === filterRole).map((row: EmploeesType) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                 >
                                     <TableCell component="th" scope="row">{row.name}</TableCell>
-                                    <TableCell>{row.role}</TableCell>
+                                    <TableCell>{VALUE_SELECT[`${row.role}`]}</TableCell>
                                     <TableCell>{row.phone}</TableCell>
                                     <TableCell>{row.birthday}</TableCell>
-                                    <TableCell>{row.isArchive}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

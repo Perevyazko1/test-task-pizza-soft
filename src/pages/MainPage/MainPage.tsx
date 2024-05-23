@@ -1,6 +1,9 @@
 import {memo, ReactNode, useEffect} from 'react';
-import useAxios from "../shared/hooks/useAxios/useAxios";
-import CustomTable from "../shared/ui/CustomTable/CustomTable";
+import useAxios from "../../shared/hooks/useAxios/useAxios";
+import CustomTable from "../../shared/ui/CustomTable/CustomTable";
+import Paper from "@mui/material/Paper";
+import cls from "./MainPage.module.scss"
+import {FilterRole} from "../../features/FilterRole/FilterRole";
 
 interface MainPageProps {
     className?: string
@@ -48,8 +51,9 @@ export const MainPage = memo((props: MainPageProps) => {
 
 
     return (
-        <div>
+        <Paper className={cls.MainPage}>
+            <FilterRole/>
             <CustomTable/>
-        </div>
+        </Paper>
     );
 });
