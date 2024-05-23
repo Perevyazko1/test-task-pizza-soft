@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {memo, useEffect} from 'react';
+import {memo, useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {LoadingButton} from "@mui/lab";
 import useAxios from "./hooks/useAxios/useAxios";
 import {EmploeesType} from "../providers/models/EmploeesType";
 import {useAppdispatch, useAppSelector} from "./hooks/useRedux/redux";
@@ -18,7 +17,10 @@ const CustomTable = memo(() => {
 
     const {data, error, loading, executeRequest} = useAxios<EmploeesType[]>();
     const {tableApp} = tableAppSlice.actions
+    const {sortByNameAsc} = tableAppSlice.actions
+    const {sortByNameDesc} = tableAppSlice.actions
     const {tableData} = useAppSelector(state => state.tableAppSlice)
+    const [sortName, setSortName] = useState<boolean>(true)
 
     const dispatch = useAppdispatch()
 
@@ -35,18 +37,25 @@ const CustomTable = memo(() => {
 
 
     useEffect(() => {
-
         fetchData();
-
-
     }, []);
 
     useEffect(() => {
         if (data) {
             dispatch(tableApp(data))
         }
-
     }, [loading]);
+
+    const handleSortName = () => {
+
+        if (sortName) {
+            dispatch(sortByNameAsc())
+        } else {
+            dispatch(sortByNameDesc())
+        }
+        setSortName(!sortName);
+
+    }
 
 
     return (
@@ -56,7 +65,7 @@ const CustomTable = memo(() => {
                     <Table sx={{width: "100vw"}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Имя</TableCell>
+                                <TableCell onClick={handleSortName}>Имя</TableCell>
                                 <TableCell>Роль</TableCell>
                                 <TableCell>Телефон</TableCell>
                                 <TableCell>Дата рождения</TableCell>

@@ -14,9 +14,7 @@ const store = setupStore()
 
 root.render(
     <Provider store={store}>
-        <HashRouter>
           <App/>
-        </HashRouter>
     </Provider>
 );
 

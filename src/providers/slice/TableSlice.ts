@@ -19,7 +19,12 @@ export const tableAppSlice = createSlice({
         tableApp(state, action: PayloadAction<EmploeesType[]>) {
             state.tableData = action.payload
         },
-
+        sortByNameAsc(state) {
+            state.tableData = state.tableData.sort((a, b) => a.name.localeCompare(b.name))
+        },
+        sortByNameDesc(state) {
+            state.tableData = state.tableData.sort((a, b) => b.name.localeCompare(a.name));
+        }
 
     }
 })
