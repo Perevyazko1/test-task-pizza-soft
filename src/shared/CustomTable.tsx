@@ -19,8 +19,11 @@ const CustomTable = memo(() => {
     const {tableApp} = tableAppSlice.actions
     const {sortByNameAsc} = tableAppSlice.actions
     const {sortByNameDesc} = tableAppSlice.actions
+    const {sortByBirthdayAsc} = tableAppSlice.actions
+    const {sortByBirthdayDesc} = tableAppSlice.actions
     const {tableData} = useAppSelector(state => state.tableAppSlice)
     const [sortName, setSortName] = useState<boolean>(true)
+    const [sortBirthday, setSortBirthday] = useState<boolean>(true)
 
     const dispatch = useAppdispatch()
 
@@ -56,6 +59,16 @@ const CustomTable = memo(() => {
         setSortName(!sortName);
 
     }
+    const handleSortBirthday = () => {
+
+        if (sortBirthday) {
+            dispatch(sortByBirthdayAsc())
+        } else {
+            dispatch(sortByBirthdayDesc())
+        }
+        setSortBirthday(!sortBirthday);
+
+    }
 
 
     return (
@@ -68,7 +81,7 @@ const CustomTable = memo(() => {
                                 <TableCell onClick={handleSortName}>Имя</TableCell>
                                 <TableCell>Роль</TableCell>
                                 <TableCell>Телефон</TableCell>
-                                <TableCell>Дата рождения</TableCell>
+                                <TableCell onClick={handleSortBirthday}>Дата рождения</TableCell>
                                 <TableCell>Статус</TableCell>
                             </TableRow>
                         </TableHead>
