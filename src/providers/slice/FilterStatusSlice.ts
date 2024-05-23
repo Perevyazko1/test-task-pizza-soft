@@ -8,7 +8,7 @@ export interface FilterStatusState {
 
 
 const initialState: FilterStatusState = {
-    filterStatus: true
+    filterStatus: false
 
 }
 

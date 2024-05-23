@@ -4,6 +4,7 @@ import CustomTable from "../../shared/ui/CustomTable/CustomTable";
 import Paper from "@mui/material/Paper";
 import cls from "./MainPage.module.scss"
 import {FilterRole} from "../../features/FilterRole/FilterRole";
+import {FilterStatus} from "../../features/FilterStatus/FilterStatus";
 
 interface MainPageProps {
     className?: string
@@ -52,7 +53,10 @@ export const MainPage = memo((props: MainPageProps) => {
 
     return (
         <Paper className={cls.MainPage}>
-            <FilterRole/>
+            <div className={cls.filters}>
+                <FilterRole/>
+                <FilterStatus/>
+            </div>
             <CustomTable/>
         </Paper>
     );

@@ -28,6 +28,7 @@ const CustomTable = memo(() => {
     const [sortName, setSortName] = useState<boolean>(true)
     const [sortBirthday, setSortBirthday] = useState<boolean>(true)
     const {filterRole} = useAppSelector(state => state.filterRoleAppSlice)
+    const {filterStatus} = useAppSelector(state => state.filterStatusAppSlice)
 
 
     const dispatch = useAppdispatch()
@@ -99,7 +100,7 @@ const CustomTable = memo(() => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tableData && tableData.filter((item: EmploeesType) => filterRole === "all" || item.role === filterRole).map((row: EmploeesType) => (
+                            {tableData && tableData.filter((item: EmploeesType) => item.isArchive === filterStatus && (filterRole === "all" || item.role === filterRole)).map((row: EmploeesType) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}

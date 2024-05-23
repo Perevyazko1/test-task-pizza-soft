@@ -1,5 +1,14 @@
-.MainPage{
+.MainPage {
     width: 100vw;
     height: 100vh;
     border-radius: 0 !important;
+
+}
+
+.filters {
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
