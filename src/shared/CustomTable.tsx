@@ -8,21 +8,20 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {LoadingButton} from "@mui/lab";
-import useAxios from "./hooks/useAxios";
-
-interface Emploees {
-    "id": string,
-    "name": string,
-    "isArchive": boolean,
-    "role": string,
-    "phone": string,
-    "birthday": string
-}
+import useAxios from "./hooks/useAxios/useAxios";
+import {EmploeesType} from "../providers/models/EmploeesType";
+import {useAppdispatch, useAppSelector} from "./hooks/useRedux/redux";
+import {tableAppSlice} from "../providers/slice/TableSlice";
 
 
 const CustomTable = memo(() => {
 
-    const {data, error, loading, executeRequest} = useAxios<Emploees[]>();
+    const {data, error, loading, executeRequest} = useAxios<EmploeesType[]>();
+    const {tableApp} = tableAppSlice.actions
+    const {tableData} = useAppSelector(state => state.tableAppSlice)
+
+    const dispatch = useAppdispatch()
+
     const fetchData = async () => {
         try {
 
@@ -42,11 +41,18 @@ const CustomTable = memo(() => {
 
     }, []);
 
+    useEffect(() => {
+        if (data) {
+            dispatch(tableApp(data))
+        }
+
+    }, [loading]);
+
 
     return (
         <div style={{display: "grid", justifyContent: "center"}}>
             <TableContainer component={Paper}>
-                {!loading && data &&
+                {!loading && tableData &&
                     <Table sx={{width: "100vw"}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -58,7 +64,7 @@ const CustomTable = memo(() => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {data && Object.values(data).map((row: Emploees) => (
+                            {tableData && tableData.map((row: EmploeesType) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}

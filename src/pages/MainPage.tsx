@@ -1,5 +1,5 @@
 import {memo, ReactNode, useEffect} from 'react';
-import useAxios from "../shared/hooks/useAxios";
+import useAxios from "../shared/hooks/useAxios/useAxios";
 import CustomTable from "../shared/CustomTable";
 
 interface MainPageProps {
