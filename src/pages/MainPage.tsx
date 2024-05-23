@@ -1,6 +1,6 @@
 import {memo, ReactNode, useEffect} from 'react';
 import useAxios from "../shared/hooks/useAxios/useAxios";
-import CustomTable from "../shared/CustomTable";
+import CustomTable from "../shared/ui/CustomTable/CustomTable";
 
 interface MainPageProps {
     className?: string

@@ -1,0 +1,46 @@
+.CustomTable {
+
+}
+
+.birthday {
+    cursor: pointer;
+    position: relative;
+}
+
+.name {
+    cursor: pointer;
+    position: relative;
+}
+
+.selectName {
+    position: absolute;
+    left: 55px;
+
+
+    &.openSelect {
+        transition: rotate 1s ease;
+        rotate: 0;
+    }
+
+    &.closeSelect {
+        transition: rotate 1s ease;
+        rotate: 200grad;
+
+    }
+}
+
+.selectBirth {
+    position: absolute;
+    left: 129px;
+
+    &.openSelect {
+        transition: rotate 1s ease;
+        rotate: 200grad;
+    }
+
+    &.closeSelect {
+        transition: rotate 1s ease;
+        rotate: 0;
+
+    }
+}

@@ -7,10 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import useAxios from "./hooks/useAxios/useAxios";
-import {EmploeesType} from "../providers/models/EmploeesType";
-import {useAppdispatch, useAppSelector} from "./hooks/useRedux/redux";
-import {tableAppSlice} from "../providers/slice/TableSlice";
+import useAxios from "../../hooks/useAxios/useAxios";
+import {EmploeesType} from "../../../providers/models/EmploeesType";
+import {useAppdispatch, useAppSelector} from "../../hooks/useRedux/redux";
+import {tableAppSlice} from "../../../providers/slice/TableSlice";
+import cls from "./CustomTable.module.scss"
+import up from "../../assets/icons/vector_close.svg"
 
 
 const CustomTable = memo(() => {
@@ -78,10 +80,19 @@ const CustomTable = memo(() => {
                     <Table sx={{width: "100vw"}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell onClick={handleSortName}>Имя</TableCell>
+                                <TableCell className={cls.name} onClick={handleSortName}>
+                                    Имя
+                                    <img src={up}
+                                         className={sortName ? `${cls.selectName} ${cls.openSelect}` : `${cls.selectName} ${cls.closeSelect}`}/>
+                                </TableCell>
                                 <TableCell>Роль</TableCell>
                                 <TableCell>Телефон</TableCell>
-                                <TableCell onClick={handleSortBirthday}>Дата рождения</TableCell>
+                                <TableCell className={cls.birthday} onClick={handleSortBirthday}>
+                                    Дата рождения
+                                    <img src={up}
+                                         className={sortBirthday ? `${cls.selectBirth} ${cls.openSelect}` : `${cls.selectBirth} ${cls.closeSelect}`}/>
+
+                                </TableCell>
                                 <TableCell>Статус</TableCell>
                             </TableRow>
                         </TableHead>
