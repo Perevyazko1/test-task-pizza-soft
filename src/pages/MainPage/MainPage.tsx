@@ -5,10 +5,11 @@ import Paper from "@mui/material/Paper";
 import cls from "./MainPage.module.scss"
 import {FilterRole} from "../../features/FilterRole/FilterRole";
 import {FilterStatus} from "../../features/FilterStatus/FilterStatus";
-import {SelectChangeEvent} from "@mui/material";
+import {Button, SelectChangeEvent} from "@mui/material";
 import {VALUE_ROLE, VALUE_SELECT} from "../../entities/Roles";
 import {filterRoleAppSlice} from "../../providers/slice/FilterRoleSlice";
 import {useAppdispatch, useAppSelector} from "../../shared/hooks/useRedux/redux";
+import {useNavigate} from "react-router-dom";
 
 interface MainPageProps {
     className?: string
@@ -30,6 +31,7 @@ export const MainPage = memo((props: MainPageProps) => {
     const {filterRoleApp} = filterRoleAppSlice.actions
     const {filterRole} = useAppSelector(state => state.filterRoleAppSlice)
     const dispatch = useAppdispatch()
+    const navigate = useNavigate()
 
     const {
         className,
@@ -52,10 +54,6 @@ export const MainPage = memo((props: MainPageProps) => {
         fetchData()
     }, []);
 
-    useEffect(() => {
-        console.log(error)
-        console.log(loading)
-    }, []);
 
 
     return (
@@ -71,6 +69,20 @@ export const MainPage = memo((props: MainPageProps) => {
                 <FilterStatus/>
             </div>
             <CustomTable/>
+            <div className={cls.createButton}>
+                <Button
+                    sx={{width: '200px', margin: "50px auto"}}
+                    variant="outlined"
+                    size="medium"
+                    onClick={() => {
+                        navigate("/create")
+                    }}
+                >
+                    ДОБАВИТЬ
+                </Button>
+
+            </div>
+
         </Paper>
     );
 });

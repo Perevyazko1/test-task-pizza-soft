@@ -33,8 +33,14 @@ export const CustomForm = memo((props: CustomFormProps) => {
 
     const fetchData = async () => {
         try {
+            if (employee.id){
+                await executeRequest('PUT', `http://localhost:3001/employees/${employee.id}`,employee);
+            }else {
+                const { id, ...creatEmployee} = employee
+                await executeRequest('POST', `http://localhost:3001/employees/${employee.id}`,employee);
+            }
 
-            await executeRequest('PUT', `http://localhost:3001/employees/${employee.id}`,employee);
+
             navigate("/")
 
 
@@ -64,8 +70,8 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 fullWidth
                 value={employee.name}
                 size="medium"
-                helperText=""
                 id="outlined"
+                label="Имя"
                 onChange={(e) =>
                     dispatch(employeeName(e.target.value))}
             />
@@ -77,7 +83,7 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 fullWidth
                 value={employee.phone}
                 size="medium"
-                helperText=""
+                label="Телефон"
                 id="outlined"
                 onChange={(e) =>
                     dispatch(employeePhone(e.target.value))}
@@ -90,7 +96,7 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 fullWidth
                 value={employee.birthday}
                 size="medium"
-                helperText=""
+                label="Дата рождения"
                 id="outlined"
                 onChange={(e) =>
                     dispatch(employeeBirthday(e.target.value))}

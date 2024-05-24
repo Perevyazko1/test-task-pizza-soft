@@ -126,13 +126,21 @@
     {
       "id": "5359",
       "name": "Кира Колесников",
-      "isArchive": true,
-      "role": "cook",
+      "isArchive": false,
+      "role": "waiter",
       "phone": "+7 (929) 592-3637",
       "birthday": "25.02.1972"
     },
     {
       "id": "1393"
+    },
+    {
+      "id": "",
+      "name": "gegre",
+      "isArchive": false,
+      "role": "waiter",
+      "phone": "rgergerg",
+      "birthday": "122121"
     }
   ]
 }

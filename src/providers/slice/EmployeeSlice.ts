@@ -9,7 +9,7 @@ export interface EmploeesState {
 
 const initialState: EmploeesState = {
     employee: {
-        "id": '1',
+        "id": '',
         "name": '',
         "isArchive": false,
         "role": '',

@@ -24,7 +24,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<MainPage/>}/>
                 <Route path={"/update/:id"} element={<UpdateEmployeePage/>}/>
-                <Route path={"/create"} element={<MainPage/>}/>
+                <Route path={"/create"} element={<UpdateEmployeePage/>}/>
             </Routes>
 
 
