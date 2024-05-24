@@ -30,7 +30,7 @@ export const CustomForm = memo((props: CustomFormProps) => {
         const navigate = useNavigate()
 
     const {data, error, loading, executeRequest} = useAxios<EmploeesType>();
-    const handlePhoneNumberChange = useMaskPhone()
+    const {handlePhoneNumberChange, handleBirthdayChange} = useMaskPhone()
 
 
     const fetchData = async () => {
@@ -101,8 +101,7 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 size="medium"
                 label="Дата рождения"
                 id="outlined"
-                onChange={(e) =>
-                    dispatch(employeeBirthday(e.target.value))}
+                onChange={handleBirthdayChange}
             />
             <FilterRole
                 value={employee.role}
