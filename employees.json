@@ -141,6 +141,30 @@
       "role": "waiter",
       "phone": "rgergerg",
       "birthday": "122121"
+    },
+    {
+      "id": "",
+      "name": "Пупкин",
+      "isArchive": false,
+      "role": "cook",
+      "phone": "+7 (922) 637-01-47",
+      "birthday": "20.06.1983"
+    },
+    {
+      "id": "566b",
+      "name": "Пупкин",
+      "isArchive": false,
+      "role": "cook",
+      "phone": "+7 (922) 637-01-47",
+      "birthday": "20.06.1983"
+    },
+    {
+      "id": "24d7",
+      "name": "Пупкин",
+      "isArchive": false,
+      "role": "cook",
+      "phone": "+7 (922) 637-01-47",
+      "birthday": "20.06.1983"
     }
   ]
 }

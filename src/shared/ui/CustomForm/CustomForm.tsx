@@ -37,7 +37,8 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 await executeRequest('PUT', `http://localhost:3001/employees/${employee.id}`,employee);
             }else {
                 const { id, ...creatEmployee} = employee
-                await executeRequest('POST', `http://localhost:3001/employees/${employee.id}`,employee);
+                console.log(employee)
+                await executeRequest('POST', `http://localhost:3001/employees/${employee.id}`,creatEmployee);
             }
 
 
@@ -51,6 +52,35 @@ export const CustomForm = memo((props: CustomFormProps) => {
             console.error('Ошибка получения данных:', error);
         }
     };
+
+        const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+
+        let formattedPhoneNumber = e.target.value;
+
+        // Удаляем все символы, кроме цифр
+        formattedPhoneNumber = formattedPhoneNumber.replace(/\D/g, '');
+
+        // Применяем маску к номеру телефона
+        if (formattedPhoneNumber.length <= 1) {
+            if (formattedPhoneNumber === "7" || "8") {
+                formattedPhoneNumber = `+7 (${formattedPhoneNumber.slice(1, 4)}`
+            } else {
+                formattedPhoneNumber = `+7 (${formattedPhoneNumber}`;
+            }
+        } else if (formattedPhoneNumber.length <= 4) {
+            formattedPhoneNumber = `+7 (${formattedPhoneNumber.slice(1, 4)}`;
+        } else if (formattedPhoneNumber.length <= 7) {
+            formattedPhoneNumber = `+7 (${formattedPhoneNumber.slice(1, 4)}) ${formattedPhoneNumber.slice(4, 7)}`;
+        } else if (formattedPhoneNumber.length <= 9) {
+            formattedPhoneNumber = `+7 (${formattedPhoneNumber.slice(1, 4)}) ${formattedPhoneNumber.slice(4, 7)}-${formattedPhoneNumber.slice(7, 9)}`;
+        } else {
+            formattedPhoneNumber = `+7 (${formattedPhoneNumber.slice(1, 4)}) ${formattedPhoneNumber.slice(4, 7)}-${formattedPhoneNumber.slice(7, 9)}-${formattedPhoneNumber.slice(9, 11)}`;
+        }
+        dispatch(employeePhone(formattedPhoneNumber))
+
+    };
+
 
 
     const {
@@ -85,8 +115,7 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 size="medium"
                 label="Телефон"
                 id="outlined"
-                onChange={(e) =>
-                    dispatch(employeePhone(e.target.value))}
+                onChange={handlePhoneNumberChange}
             />
             <TextField
                 sx={{

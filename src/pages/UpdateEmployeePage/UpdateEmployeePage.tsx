@@ -20,6 +20,7 @@ export const UpdateEmployeePage = memo((props: UpdateEmployeePageProps) => {
     const {id} = useParams();
     const {data, error, loading, executeRequest} = useAxios<EmploeesType>();
     const {employee} = employeeAppSlice.actions
+    const {ressetEmployee} = employeeAppSlice.actions
 
 
     const dispatch = useAppdispatch()
@@ -43,6 +44,7 @@ export const UpdateEmployeePage = memo((props: UpdateEmployeePageProps) => {
     useEffect(() => {
         if (data) {
             dispatch(employee(data))
+            dispatch(ressetEmployee())
         }
     }, [loading]);
 

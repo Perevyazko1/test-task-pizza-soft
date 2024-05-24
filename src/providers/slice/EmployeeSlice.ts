@@ -27,6 +27,9 @@ export const employeeAppSlice = createSlice({
         employee(state, action: PayloadAction<EmploeesType>) {
             state.employee = action.payload
         },
+        ressetEmployee(state ) {
+            state.employee = initialState.employee
+        },
         employeeName(state, action: PayloadAction<string>) {
             state.employee.name = action.payload
         },
