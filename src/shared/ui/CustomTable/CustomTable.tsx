@@ -14,6 +14,7 @@ import {tableAppSlice} from "../../../providers/slice/TableSlice";
 import cls from "./CustomTable.module.scss"
 import up from "../../assets/icons/vector_close.svg"
 import {VALUE_SELECT} from "../../../entities/Roles";
+import {useNavigate} from "react-router-dom";
 
 
 const CustomTable = memo(() => {
@@ -32,6 +33,8 @@ const CustomTable = memo(() => {
 
 
     const dispatch = useAppdispatch()
+    const navigate = useNavigate()
+
 
     const fetchData = async () => {
         try {
@@ -102,6 +105,9 @@ const CustomTable = memo(() => {
                         <TableBody>
                             {tableData && tableData.filter((item: EmploeesType) => item.isArchive === filterStatus && (filterRole === "all" || item.role === filterRole)).map((row: EmploeesType) => (
                                 <TableRow
+                                    onClick={() => {
+                                        navigate(`/update/${row.id}`)
+                                    }}
                                     key={row.id}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                 >

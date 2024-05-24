@@ -1,5 +1,5 @@
-import {memo, ReactNode} from 'react';
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {ChangeEvent, memo, ReactNode} from 'react';
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import {VALUE_SELECT} from "../../entities/Roles";
 import useAxios from "../../shared/hooks/useAxios/useAxios";
 import {EmploeesType} from "../../providers/models/EmploeesType";
@@ -10,20 +10,28 @@ import {filterRoleAppSlice} from "../../providers/slice/FilterRoleSlice";
 interface FilterRoleProps {
     className?: string
     children?: ReactNode
+    header?: string
+    valueSelect: object
+    value: string
+    // onChange: (event: ChangeEvent<{ value: unknown }>) => void;
+    onChange: (event: SelectChangeEvent<string>, child: ReactNode) => void
+
+
 
 }
 
 
 export const FilterRole = memo((props: FilterRoleProps) => {
 
-    const {filterRoleApp} = filterRoleAppSlice.actions
-    const {filterRole} = useAppSelector(state => state.filterRoleAppSlice)
-    const dispatch = useAppdispatch()
 
 
     const {
         className,
         children,
+        valueSelect,
+        header,
+        onChange,
+        value,
         ...otherProps
     } = props
 
@@ -36,16 +44,14 @@ export const FilterRole = memo((props: FilterRoleProps) => {
             }}
             fullWidth
             size="medium">
-            <InputLabel id="demo-select-small-label">Фильтр по должности</InputLabel>
+            <InputLabel id="demo-select-small-label">{header}</InputLabel>
             <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
-                value={filterRole}
-                label="Определить стоимость"
-                onChange={(e) =>
-                    dispatch(filterRoleApp(e.target.value))}
+                value={value}
+                onChange={onChange}
             >
-                {Object.entries(VALUE_SELECT).map(([name, role], index) => (
+                {Object.entries(valueSelect).map(([name, role], index) => (
                     <MenuItem key={index} value={name}>{role}</MenuItem>
 
 

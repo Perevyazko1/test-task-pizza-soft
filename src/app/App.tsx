@@ -1,6 +1,8 @@
 import React from 'react';
 import {MainPage} from "../pages/MainPage/MainPage";
 import {createTheme, ThemeProvider} from "@mui/material";
+import {Route, Routes} from "react-router-dom";
+import {UpdateEmployeePage} from "../pages/UpdateEmployeePage/UpdateEmployeePage";
 
 
 function App() {
@@ -18,7 +20,13 @@ function App() {
     return (
         <ThemeProvider theme={darkTheme}>
 
-            <MainPage/>
+
+            <Routes>
+                <Route path={"/"} element={<MainPage/>}/>
+                <Route path={"/update/:id"} element={<UpdateEmployeePage/>}/>
+                <Route path={"/create"} element={<MainPage/>}/>
+            </Routes>
+
 
         </ThemeProvider>
     );

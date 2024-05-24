@@ -5,6 +5,10 @@ import Paper from "@mui/material/Paper";
 import cls from "./MainPage.module.scss"
 import {FilterRole} from "../../features/FilterRole/FilterRole";
 import {FilterStatus} from "../../features/FilterStatus/FilterStatus";
+import {SelectChangeEvent} from "@mui/material";
+import {VALUE_ROLE, VALUE_SELECT} from "../../entities/Roles";
+import {filterRoleAppSlice} from "../../providers/slice/FilterRoleSlice";
+import {useAppdispatch, useAppSelector} from "../../shared/hooks/useRedux/redux";
 
 interface MainPageProps {
     className?: string
@@ -23,6 +27,9 @@ interface Employee {
 
 export const MainPage = memo((props: MainPageProps) => {
     const {data, error, loading, executeRequest} = useAxios<Employee[]>();
+    const {filterRoleApp} = filterRoleAppSlice.actions
+    const {filterRole} = useAppSelector(state => state.filterRoleAppSlice)
+    const dispatch = useAppdispatch()
 
     const {
         className,
@@ -54,7 +61,13 @@ export const MainPage = memo((props: MainPageProps) => {
     return (
         <Paper className={cls.MainPage}>
             <div className={cls.filters}>
-                <FilterRole/>
+                <FilterRole
+                    value={filterRole}
+                    onChange={(e: SelectChangeEvent) =>
+                        dispatch(filterRoleApp(e.target.value))}
+                    valueSelect={VALUE_SELECT}
+
+                />
                 <FilterStatus/>
             </div>
             <CustomTable/>

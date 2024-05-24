@@ -24,13 +24,11 @@ export const FilterStatus = memo((props: FilterStatusProps) => {
 
 
     return (
-        <FormGroup>
             <FormControlLabel sx={{width:'150px',margin:'10px'}} control={<Checkbox size="medium"
                                                  checked={filterStatus}
                                                  onChange={(e) => {
                                                      dispatch(filterStatusApp(e.target.checked))
                                                  }}
                                                  inputProps={{'aria-label': 'controlled'}}/>} label="В архиве"/>
-        </FormGroup>
     );
 });

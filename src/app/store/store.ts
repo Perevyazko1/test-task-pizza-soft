@@ -2,12 +2,14 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import tableAppSlice from "../../providers/slice/TableSlice";
 import filterStatusAppSlice from "../../providers/slice/FilterStatusSlice";
 import filterRoleAppSlice from "../../providers/slice/FilterRoleSlice";
+import employeeAppSlice from "../../providers/slice/EmployeeSlice";
 
 const rootReducer = combineReducers({
 
     tableAppSlice,
     filterStatusAppSlice,
-    filterRoleAppSlice
+    filterRoleAppSlice,
+    employeeAppSlice
 
 })
 
