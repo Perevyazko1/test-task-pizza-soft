@@ -28,9 +28,11 @@ export const UpdateEmployeePage = memo((props: UpdateEmployeePageProps) => {
 
     const fetchData = async () => {
         try {
-            console.log(id)
+            if(id){
+                await executeRequest('GET', `http://localhost:3001/employees/${id}`);
 
-            await executeRequest('GET', `http://localhost:3001/employees/${id}`);
+            }
+
 
 
         } catch (error) {
@@ -42,9 +44,10 @@ export const UpdateEmployeePage = memo((props: UpdateEmployeePageProps) => {
     }, []);
 
     useEffect(() => {
+        dispatch(ressetEmployee())
         if (data) {
             dispatch(employee(data))
-            dispatch(ressetEmployee())
+
         }
     }, [loading]);
 

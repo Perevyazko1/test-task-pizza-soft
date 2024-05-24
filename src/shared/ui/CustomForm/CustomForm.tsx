@@ -37,7 +37,6 @@ export const CustomForm = memo((props: CustomFormProps) => {
                 await executeRequest('PUT', `http://localhost:3001/employees/${employee.id}`,employee);
             }else {
                 const { id, ...creatEmployee} = employee
-                console.log(employee)
                 await executeRequest('POST', `http://localhost:3001/employees/${employee.id}`,creatEmployee);
             }
 
