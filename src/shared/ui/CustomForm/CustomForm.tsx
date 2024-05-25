@@ -9,7 +9,7 @@ import cls from "./CustomForm.module.scss"
 import useAxios from "../../hooks/useAxios/useAxios";
 import {EmploeesType} from "../../../providers/models/EmploeesType";
 import {useNavigate} from "react-router-dom";
-import useMaskPhone from "../../hooks/useMaskPhone/useMaskPhone";
+import useMask from "../../hooks/useMaskPhone/useMask";
 
 interface CustomFormProps {
     className?: string
@@ -30,7 +30,7 @@ export const CustomForm = memo((props: CustomFormProps) => {
         const navigate = useNavigate()
 
     const {data, error, loading, executeRequest} = useAxios<EmploeesType>();
-    const {handlePhoneNumberChange, handleBirthdayChange} = useMaskPhone()
+    const {handlePhoneNumberChange, handleBirthdayChange} = useMask()
 
 
     const fetchData = async () => {

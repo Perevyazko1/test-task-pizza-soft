@@ -42,7 +42,6 @@ export const UpdateEmployeePage = memo((props: UpdateEmployeePageProps) => {
     useEffect(() => {
         fetchData()
     }, []);
-
     useEffect(() => {
         dispatch(ressetEmployee())
         if (data) {

@@ -2,7 +2,7 @@ import {employeeAppSlice} from "../../../providers/slice/EmployeeSlice";
 import {useAppdispatch} from "../useRedux/redux";
 
 
-const useMaskPhone = () => {
+const useMask = () => {
     const {employeePhone} = employeeAppSlice.actions
     const {employeeBirthday} = employeeAppSlice.actions
 
@@ -49,11 +49,10 @@ const useMaskPhone = () => {
             birthday = `${birthday.slice(0, 2)}.${birthday.slice(2, 4)}`;
         }
 
-        console.log(birthday);
         dispatch(employeeBirthday(birthday));
     };
     return {handlePhoneNumberChange, handleBirthdayChange}
 
 }
 
-export default useMaskPhone
+export default useMask
